@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function Popup(props) {
-  const { handleSubmit, data, changeCategory } = props;
+  const { handleSubmit, changeCategory } = props;
   const [numberOfQuestions, setNumberOfQuestions] = useState(10);
   const [category, setCategory] = useState("");
   const [difficulty, setDifficulty] = useState("");
@@ -42,7 +42,6 @@ function Popup(props) {
               max="50"
               type="number"
               className="setup-questions-input"
-              name="numberOfQuestions"
             ></input>
             <div className="setup-questions">
               Difficulty
@@ -50,7 +49,6 @@ function Popup(props) {
                 value={difficulty}
                 onChange={e => setDifficulty(e.target.value)}
                 className="select"
-                name="difficulty"
               >
                 {/*sortData.map((x, y) => (
                   <option key={y}>{x.difficulty}</option>
@@ -62,14 +60,15 @@ function Popup(props) {
             </div>
             <div className="setup-questions">
               Category
-              <select
-                value={category}
-                onChange={e => setCategory(e.target.value)}
-                className="select"
-                name="category"
-              >
+              <select className="select">
                 {changeCategory.map((x, y) => (
-                  <option key={y}>{x.name}</option>
+                  <option
+                    value={category}
+                    onChange={e => setCategory(e.target.value)}
+                    key={y}
+                  >
+                    {x.name}
+                  </option>
                 ))}
               </select>
             </div>

@@ -30,6 +30,8 @@ function Questions(props) {
     }
   };
 
+  if (!data.length) return <p>No Data</p>;
+
   return (
     <div className="questions">
       {nextQuestion + 1 <= data.length ? (

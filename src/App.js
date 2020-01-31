@@ -38,19 +38,19 @@ function App() {
     const { numberOfQuestions, category, difficulty } = values;
 
     const getData = () => {
-      instance
-        .get(
-          `/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}&type=multiple`
-        )
-        .then(response => {
-          const data = response.data.results;
-          setData(data);
-        })
-        .catch(error => console.log(error));
-
       if (category === "" && difficulty === "") {
         instance
           .get(`/api.php?amount=${numberOfQuestions}`)
+          .then(response => {
+            const data = response.data.results;
+            setData(data);
+          })
+          .catch(error => console.log(error));
+      } else {
+        instance
+          .get(
+            `/api.php?amount=${numberOfQuestions}&category=${category}&difficulty=${difficulty}&type=multiple`
+          )
           .then(response => {
             const data = response.data.results;
             setData(data);
@@ -75,11 +75,7 @@ function App() {
           <Footer />
         </>
       ) : (
-        <Popup
-          data={data}
-          handleSubmit={handleSubmit}
-          changeCategory={changeCategory}
-        />
+        <Popup handleSubmit={handleSubmit} changeCategory={changeCategory} />
       )}
     </>
   );
