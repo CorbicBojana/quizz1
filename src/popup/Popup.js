@@ -64,7 +64,7 @@ function Popup(props) {
                 {changeCategory.map((x, y) => (
                   <option
                     value={category}
-                    onChange={e => setCategory(e.target.value)}
+                    onChange={() => setCategory(x.id)}
                     key={y}
                   >
                     {x.name}
